@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Importing libraries like bootstrap and Plotly -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="static/css/styles.css">
+    <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous">
+    </script>
+
+    <title>Forecasting</title>
+</head>
+
+<body>
+    <div style="background-color: #7550A6; padding-top: 2px; padding-bottom: 4em;" >
+        <h1 class="mt-5 " style="margin-left: 21em;">Cloud Cost Forecasting</h1>
+        <h3 class=" headThree mt-3" style="margin-left: 30em;">Predict the cloud storage price</h3>
+    </div>  
+    <!-- Section 1  Forecasting Form Start  -->
+    <div class="sectionOneDiv main container  ">
+        <div class="inputsForecast ">
+            <form class="forecastFrm" id="forecastFrm" method="post">
+                <!-- Dataset Input -->
+                <label style="margin-left:-40px; margin-bottom:10px" for="submitFile">Upload your historical workload
+                    analysis costing</label>
+                <br>
+                <input style ="margin-left: -50px;" class="uploadButton" id="submitFile" type="file" accept=".csv" required value="datasetFile" />
+                <br>
+                <!-- Month Input -->
+                <label style="margin-left:-40px; margin-top:20px; margin-bottom:10px" class="monthInput "
+                    for="forecastMonth">Enter the number of months you wish to forecast </label>
+                <br>
+                <input style ="margin-left: -50px;" class="inputTextBox" type="number" ,name="monthForecast" id="forecastMonth"
+                    placeholder="Enter month forecasting Eg:-4,5,6" required value="" value="MonthInput" />
+                <br>
+                <!-- Forecasting methods  -->
+                <p style="margin-left:-40px; margin-top: 20px;">Select any one the ARIMA forecasting method</p>
+                <input  class=" radioBtn rollingInput checkBoxInput form-check-input" type="radio"
+                    name="flexRadioDefault" id="flexRadioRolling" value="Rolling" required value="methodRolling">
+                <label class=" checkBoxLabel form-check-label" for="flexRadioRolling">
+                    Rolling
+                </label>
+                <br>
+                <input class=" radioBtn staticInput checkBoxInput form-check-input" type="radio" name="flexRadioDefault"
+                    id="flexRadioStatic" value="Static" required value="methodStatic">
+                <label class=" checkBoxLabel form-check-label" for="flexRadioStatic">
+                    Static
+                </label>
+                <br>
+                <!-- Forecast Button -->
+                <!-- <input type="submit" id="sendButton" class="button btn btn-outline-primary mt-4 " type="button" name="forecast" id="forecast" value="Forecast" > -->
+                <button  id="sendButton" class="button btn btn-outline-primary mt-4 " type="button" name="forecast"
+                    id="forecast" value="submitForecast">
+                    Forecast
+                </button>
+                <br>
+                <button type="button" class="refreshButton btn btn-outline-primary mt-4"
+                    onClick="window.location.reload();">Refresh</button>
+            </form>
+        </div>
+    </div>
+    <!-- Section1  Forcasting Form End -->
+
+    <!-- Section 2 Graph and Table Start  -->
+    <div class="sectionTwoDiv main container">
+        <!---- ***Main section DIV*** -->
+        <hr class="mt-5">
+        <!---- Once users clicks the button the selected choice of forecasting method either rolling or static will be displayed (eg: ARIMA Forecast Method: Static)-->
+        <h5 class="forecastMethod" style="text-align:center; margin-left: 7em"></h5>
+        <h5 style="text-align:center; margin-top:50px;  margin-left: 7em;"> Forecast Graph</h5>
+        <!-- Graph -->
+        <div style="margin-left: 10em;" id='myDiv'>
+            <!-- Plotly chart will be drawn inside this DIV -->
+        </div>
+        <!-- Table -->
+        <h5 style="text-align:center; margin-top:50px; margin-left: 7em;"> Forecast Table</h5>
+        <div style="margin-left: 10em; margin-bottom: 3em;" id='myTable'>
+            <!-- Plotly chart will be drawn inside this DIV -->
+        </div>
+        <br>
+
+    </div>
+    <!-- Section 2 END -->
+
+
+    <script src="static/js/app.js"></script>
+
+</body>
+
+</html>
